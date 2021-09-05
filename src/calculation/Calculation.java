@@ -4,26 +4,44 @@ import java.util.List;
 
 import model.Points;
 import model.PowerStation;
+import model.Output;
 
-public class Calculation {
-	//List<PowerStation> powerStation = new ArrayList();
-	//List<Points> points = new ArrayList();
-
-
+public class Calculation {	
 	public static void calculatePower(List<PowerStation> pStation, List<Points> points ) {
-		
-		for (int i=0; i < pStation.size();i++) {
-			/*
-			System.out.println("Size is "+pStation.size());
-			System.out.println("X Y R is "+pStation.get(i).getX()+" "+pStation.get(i).getY()+" "+pStation.get(i).getR());
-			System.out.println("############################");
-			System.out.println("Size is "+points.size());
-			System.out.println("X Y is "+points.get(0).getX()+" "+points.get(0).getY());
-			*/
-			
-			
+
+		for (int i=0; i < points.size();i++) {
+			System.out.println("Starting from I again#######################\n");
+			double distance=0;
+			double power=0;
+			List<Output> check =new ArrayList<>();
+
+				for (int j=0; j < pStation.size();j++) {			
+				 distance = Math.sqrt(						(
+						points.get(i).getY() - pStation.get(j).getY()) *
+						(points.get(i).getY() - pStation.get(j).getY()) 
+											+
+						(points.get(i).getX() - pStation.get(j).getX()) * 
+				     	(points.get(i).getX() - pStation.get(j).getX()));			 
+				 if(distance < pStation.get(j).getR()) {				 
+					 power = (pStation.get(j).getR()) - distance;
+					 power = Math.pow(power, 2);					 
+					 check.add(new Output(pStation.get(j).getX(), pStation.get(j).getY(),pStation.get(j).getR(),points.get(i).getX(),points.get(i).getY(),
+							 power));
+
+				 }
+				 if(j==pStation.size()-1 && check.isEmpty()) {
+				 System.out.println("No link station within reach for point "+points.get(i).getX()+","+points.get(i).getY() );
+				 }
+				 
+				}
+				for(int k=0;k<check.size();k++) {
+					if(!check.isEmpty()) {
+					System.out.println(check.get(k).getX()+","+check.get(k).getY()+" distance is "+check.get(k).getIx()+","+check.get(k).getIy()
+							+" power is "+check.get(k).getDistance()+" size is "+check.size());
+					}
+										
+				}
 		}
 	}
-
-
 }
+
