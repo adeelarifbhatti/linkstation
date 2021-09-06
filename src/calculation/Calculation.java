@@ -21,26 +21,29 @@ public class Calculation {
 						(points.get(i).getY() - pStation.get(j).getY()) 
 											+
 						(points.get(i).getX() - pStation.get(j).getX()) * 
-				     	(points.get(i).getX() - pStation.get(j).getX()));			 
-				 if(distance < pStation.get(j).getR()) {				 
-					 power = (pStation.get(j).getR()) - distance;
-					 power = Math.pow(power, 2);					 
-					 check.add(new Output(pStation.get(j).getX(), pStation.get(j).getY(),pStation.get(j).getR(),points.get(i).getX(),points.get(i).getY(),
-							 power));
+				     	(points.get(i).getX() - pStation.get(j).getX()));	
 
-				 }
-				 if(j==pStation.size()-1 && check.isEmpty()) {
-				 System.out.println("No link station within reach for point "+points.get(i).getX()+","+points.get(i).getY() );
-				 }
-				 
+				 	if(distance < pStation.get(j).getR()) {				 
+						 power = (pStation.get(j).getR()) - distance;
+						 power = Math.pow(power, 2);
+						 check.add(new Output(pStation.get(j).getX(), pStation.get(j).getY(),pStation.get(j).getR(),points.get(i).getX(),points.get(i).getY(),
+								 power,distance));
+					 }
+					 if(j==pStation.size()-1 && check.isEmpty()) {
+						 System.out.println("No link station within reach for point "+points.get(i).getX()+","+points.get(i).getY() );
+					 }
+					 
 				}
-				for(int k=0;k<check.size();k++) {
+				
+				for(int k=0;k<=check.size()-1;k++) {
+					System.out.println("We are in k");
 					if(!check.isEmpty()) {
 					System.out.println(check.get(k).getX()+","+check.get(k).getY()+" distance is "+check.get(k).getIx()+","+check.get(k).getIy()
-							+" power is "+check.get(k).getDistance()+" size is "+check.size());
+							+" power is "+check.get(k).getPower()+" size is "+check.size()+" Distance is  "+check.get(k).getDistance());
 					}
 										
 				}
+
 		}
 	}
 }

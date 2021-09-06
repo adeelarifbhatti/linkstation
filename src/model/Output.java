@@ -2,21 +2,28 @@ package model;
 
 public class Output {
 	private int x,y,r,ix,iy;
-	double power;
-	public Output(int x, int y, int r, int ix, int iy, double power){
+	double power,distance;
+	public double getPower() {
+		return power;
+	}
+	public void setPower(double power) {
+		this.power = power;
+	}
+	public Output(int x, int y, int r, int ix, int iy, double power, double distance){
 		this.x=x;
 		this.y=y;
 		this.r=r;
 		this.ix=ix;
 		this.iy=iy;
 		this.power=power;
+		this.distance=distance;
 		
 	}
 	public double getDistance() {
-		return power;
+		return distance;
 	}
-	public void setDistance(double power) {
-		this.power = power;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 	public int getX() {
 		return x;
